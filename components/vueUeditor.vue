@@ -53,12 +53,6 @@
       this.initEditor()
     },
 
-//    beforeDestroy () {
-//      // 组件销毁的时候，要销毁 UEditor 实例
-//      if (this.instance !== null && this.instance.destroy) {
-//        this.instance.destroy();
-//      }
-//    },
     methods: {
       initEditor () {
         //dom元素已经挂载上去了
