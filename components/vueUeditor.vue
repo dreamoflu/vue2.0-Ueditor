@@ -16,7 +16,7 @@
   import '../../static/ueditor_1/ueditor.config.js'
    import '../../../static/utf8-php/ueditor.all'
   import '../../static/ueditor_1/ueditor.all.min.js'
-  import '../../static/ueditor_1/lang/zh-cn/zh-cn.js’
+  import '../../static/ueditor_1/lang/zh-cn/zh-cn.js'
   //主体文件引入
 
 
