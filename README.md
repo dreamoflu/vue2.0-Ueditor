@@ -8,7 +8,7 @@
         var URL = '/static/utf8-php/' || getUEBasePath();
   
  3. 3.创建vueUeditor.vue组件放入components目录中
- 4. 使用方法
+ 4. 使用方法(创建百度编辑器组件)
 
   <template>
  
@@ -16,7 +16,7 @@
     
         <!--下面通过传递进来的id完成初始化-->
      
-        <script :id="randomId"  type="text/plain"></ script> 
+        <div ref="editor"></div>
        
       </div> 
      
@@ -42,7 +42,14 @@
  
     //配置可以传递进来
  
-    ueditorConfig:{}
+      value: {
+           type: String,
+          default: null,
+      },
+       config: {
+        type: Object,
+        default: {},
+      }
   
     },
   
@@ -52,7 +59,7 @@
  
       //每个编辑器生成不同的id,以防止冲突
  
-      randomId: ‘editor_‘ + (Math.random() * 100000000000000000),
+      id: ‘editor_‘ + (Math.random() * 100000000000000000),
  
       //编辑器实例
  
@@ -63,6 +70,14 @@
          },
  
       //此时--el挂载到实例上去了,可以初始化对应的编辑器了
+      watch: {
+      value: function value(val, oldVal) {
+        this.editor = UE.getEditor(this.id, this.config);
+        if (val !== null) {
+          this.editor.setContent(val);
+        }
+      }
+     },
   
     mounted () { 
  
@@ -70,17 +85,7 @@
  
     },
  
-     beforeDestroy () { 
-  
-     // 组件销毁的时候，要销毁 UEditor 实例
- 
-      if (this.instance !== null && this.instance.destroy) {
-
-      this.instance.destroy();
- 
-     }
-
-    },
+   
 
       methods: {
 
@@ -89,13 +94,17 @@
       //dom元素已经挂载上去了
 
      this.$nextTick(() => {
- 
-     this.instance = UE.getEditor(this.randomId,this.ueditorConfig); 
-  
-    this.instance.addListener(‘ready‘, () => {
-  
-
-         });
+          this.instance = UE.getEditor(this.id, this.config);
+            // 绑定事件，当 UEditor 初始化完成后，将编辑器实例通过自定义的 ready 事件交出去
+            this.instance.addListener('ready', () => {
+              this.$emit('ready', this.instance);
+            });
+              this.editor.addListener("contentChange", ()=> {
+                  const wordCount = this.editor.getContentLength(true);
+                  const content = this.editor.getContent();
+                  const plainTxt = this.editor.getPlainTxt();
+                  this.$emit('input', {wordCount: wordCount, content: content, plainTxt: plainTxt});
+              });
       });
      }
     }
