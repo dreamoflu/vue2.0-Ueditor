@@ -57,13 +57,13 @@
    
       return { 
  
-      //每个编辑器生成不同的id,以防止冲突
+       //每个编辑器生成不同的id,以防止冲突
  
-      id: ‘editor_‘ + (Math.random() * 100000000000000000),
+          id: ‘editor_‘ + (Math.random() * 100000000000000000),
  
-      //编辑器实例
+       //编辑器实例
  
-     instance: null, 
+      instance: null, 
  
             };
  
