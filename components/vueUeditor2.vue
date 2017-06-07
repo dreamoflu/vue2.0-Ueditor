@@ -13,9 +13,9 @@
         //var URL = window.UEDITOR_HOME_URL || ‘/static/ueditor_1/‘;
 
         //主体文件引入
-        import '../../static/ueditor_1/ueditor.config.js‘
-        import '../../static/ueditor_1/ueditor.all.min.js‘
-        import '../../static/ueditor_1/lang/zh-cn/zh-cn.js‘
+        import '../../static/ueditor_1/ueditor.config.js'
+        import '../../static/ueditor_1/ueditor.all.min.js'
+        import '../../static/ueditor_1/lang/zh-cn/zh-cn.js'
         //主体文件引入
 
 
@@ -27,7 +27,7 @@
             data () {
                 return {
                     //每个编辑器生成不同的id,以防止冲突
-                    id: 'editor_‘ + (Math.random() * 100000000000000000),
+                    id: 'editor_' + (Math.random() * 100000000000000000),
                     //编辑器实例
                     instance: null,
             };

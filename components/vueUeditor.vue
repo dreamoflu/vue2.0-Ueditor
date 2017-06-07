@@ -13,7 +13,7 @@
   //var URL = window.UEDITOR_HOME_URL || ‘/static/ueditor_1/‘;
 
   //主体文件引入
-  import '../../static/ueditor_1/ueditor.config.js’
+  import '../../static/ueditor_1/ueditor.config.js'
    import '../../../static/utf8-php/ueditor.all'
   import '../../static/ueditor_1/ueditor.all.min.js'
   import '../../static/ueditor_1/lang/zh-cn/zh-cn.js’
